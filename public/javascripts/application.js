@@ -19017,11 +19017,10 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":26}],159:[function(require,module,exports){
-console.log('coffee');
 
 
 },{}],160:[function(require,module,exports){
-var RadComponent, React, ReactDOM,
+var CommentBox, React, ReactDOM,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
 
@@ -19029,24 +19028,26 @@ React = require('react');
 
 ReactDOM = require('react-dom');
 
-console.log('cjsx');
+CommentBox = (function(superClass) {
+  extend(CommentBox, superClass);
 
-RadComponent = (function(superClass) {
-  extend(RadComponent, superClass);
-
-  function RadComponent() {
-    return RadComponent.__super__.constructor.apply(this, arguments);
+  function CommentBox() {
+    return CommentBox.__super__.constructor.apply(this, arguments);
   }
 
-  RadComponent.prototype.render = function() {
-    return React.createElement("div", null, "Hello React!!!!!!!!");
+  CommentBox.prototype.render = function() {
+    return React.createElement("div", {
+      "className": "CommentBox"
+    }, "Hello React fooooooooooooosssssss!!!!!!!!");
   };
 
-  return RadComponent;
+  return CommentBox;
 
 })(React.Component);
 
-React.render(React.createFactory(RadComponent)(), document.getElementById('test'));
+window.onload = (function() {
+  return ReactDOM.render(React.createElement(CommentBox, null), document.getElementById('test'));
+});
 
 
 },{"react":158,"react-dom":2}]},{},[159,160]);
