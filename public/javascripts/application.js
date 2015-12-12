@@ -19017,9 +19017,20 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":26}],159:[function(require,module,exports){
+var React, ReactDOM, Test;
+
+React = require('react');
+
+ReactDOM = require('react-dom');
+
+Test = require('../views/test.cjsx');
+
+window.onload = (function() {
+  return ReactDOM.render(React.createElement(Test, null), document.getElementById('test'));
+});
 
 
-},{}],160:[function(require,module,exports){
+},{"../views/test.cjsx":160,"react":158,"react-dom":2}],160:[function(require,module,exports){
 var CommentBox, React, ReactDOM,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -19038,16 +19049,14 @@ CommentBox = (function(superClass) {
   CommentBox.prototype.render = function() {
     return React.createElement("div", {
       "className": "CommentBox"
-    }, "Hello React fooooooooooooosssssss!!!!!!!!");
+    }, "ooooooooooooReact fooooooooooooosssssss!!!!!!!!");
   };
 
   return CommentBox;
 
 })(React.Component);
 
-window.onload = (function() {
-  return ReactDOM.render(React.createElement(CommentBox, null), document.getElementById('test'));
-});
+module.exports = CommentBox;
 
 
 },{"react":158,"react-dom":2}]},{},[159,160]);
