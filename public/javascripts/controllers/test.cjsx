@@ -1,11 +1,12 @@
-# test = require('../views/test.cjsx')
-# test = require('../application.js')
+React = require('react')
+ReactDOM = require('react-dom')
 
-# console.log test
+Test = require('../views/test.cjsx')
 
-# window.onload = ( ->
-#   ReactDOM.render(
-#     <CommentBox />
-#     document.getElementById('test')
-#   )
-# )
+window.onload = ( ->
+  ReactDOM.render(
+    # <CommentBox />
+    React.createElement(Test, null),
+    document.getElementById('test')
+  )
+)
