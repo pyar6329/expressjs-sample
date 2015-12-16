@@ -19049,7 +19049,7 @@ CommentBox = (function(superClass) {
   CommentBox.prototype.render = function() {
     return React.createElement("div", {
       "className": "CommentBox"
-    }, "ooooooooooooReact fooooooooooooosssssss!!!!!!!!");
+    }, "React fooooooooooooosssssss!!!!!!!!");
   };
 
   return CommentBox;

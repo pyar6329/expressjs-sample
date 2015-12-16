@@ -4,7 +4,7 @@ ReactDOM = require('react-dom')
 class CommentBox extends React.Component
   render: ->
     <div className="CommentBox">
-      ooooooooooooReact fooooooooooooosssssss!!!!!!!!
+      React fooooooooooooosssssss!!!!!!!!
     </div>
 
 module.exports = CommentBox
