@@ -1,0 +1,29 @@
+language: node_js
+node_js:
+- 4.2.3
+compiler: clang-3.6
+env:
+- CXX=clang-3.6
+addons:
+  apt:
+    sources:
+    - llvm-toolchain-precise-3.6
+    - ubuntu-toolchain-r-test
+    packages:
+    - clang-3.6
+    - g++-4.8
+script:
+- gulp browserify sass
+deploy:
+  provider: heroku
+  api_key:
+    secure: Dw/7iV5i9WCzLgUnskcUUiirfv8az4kz7d6aXMJ4bdzmPEwjeAJbjxzkgWShX42i1FqQ2UoxrwPDSFVLdaG/TCHshtziy3WEx5l6yqfsr/T4iqpKLWs12NpxpwUqKIphb5gQ2qZmI9FRC8BSs16BEq/ZdT1nbO78revFYADBF0NR76yJTQWKZDMgYx+VaPQSr4EYxYapqjoaZ4xF3qqDYfkx4xON5zQtQXBeIpsDevpoEE86QabyB0KrCfuGpj70e7L0D0I+VvmiszfDh18OnmZX9PN6NQnhQRcYhsHaxxEkYt+sncac7Wrk1CikYH62BWhvdRSunS+Euwj5/eXvCWU6fDph4/otsOJ4cri0O44fYf4jj2k7m8ffIdhycszv6VpRfBzO9fefNmgZLyvxMpzKZKRtiekweiKOzEk3zKRIZQ897ZK+zT1t5xgBzbFvdsUoAch7Jr68eifuUXQ4pf8jNNoG8gqtf68/i1+xCR7I9ryEPHmWbvrunRrIhjyVheMfLuLcNbqDFPd8TbXVPa/in+SVAS52Xks1sHGCF+vNtZ64PG352VDGvogIMzrrcBgxIQzjchVEQ0vNRymCn1dq7Xsx/tM+/baGbg6IcbKXF7PB2QdUBIdcrIE+xaotgAgcHNUk1ZuOWarJHziV9asY77V8u/Thjfw2jteogro=
+  app: ootalk
+  on:
+    repo: SBR2015/OoTalk_frontend
+    branch: master
+  run:
+    - gulp browserify sass
+notifications:
+  slack:
+    secure: AVpysVl5UflpM+cIDxGShh+Gp9bTyRaSeTACrUBi6nZt4YTyYsBfEoXa7r+II9ASJkQ/jn8pi8mGnrsdY25LZy3OeSDuW8T9eaQQUmckTAOJgXShqxPLeGP4H6LitnWiWkMLLCUJpuSpFqDPtt5c6IQbRIhbU4UZlVsa+R+IpFwDrUx0Sf2Mr3VbRSyChz5CiW70rJsAklMVS6Td9XdoHJpquFEUr/MBBwdl/0pFY+ZvrlOCuO5QouZPWRD8VCiRk3MG+k/t6/aeHN5t89ku+bLz1zZmE+CNpwC7GuwwbBH/EcKnWHInFZWKLya4LC/ObPLJwTU6OPH5b5uvx1euEM5dKNu+yvLAVpBLQarhHLt0/R2lXrbl8PROzpzbsgq49CdqC8JfIAdLLd27o1Wqt8fF6nl09xhrgHLqMBxc+xszPNu2vks6skI0UctzbLru+LpXDCZdPNpVFV6mEiuMLe79X9Mo5a9SJeJtHqVY4hfR8H210ySVu4UIxktyDnVKWAbuTuB+q8R+baOtJrWMOMWj27gIwJucPFotlRfeQvg/pHysFYxam1BSh7xad25DYRNDeNGbMc87FX9Jasu0Ws9YmMZRVHUs4fmILc2LKgrtVkUoqrrnS2fam7Ny+4x117kExT2A/fknLvTr3M0P9zst3DKXOUu8NmLyD6v94xY=

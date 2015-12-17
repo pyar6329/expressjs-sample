@@ -1,4 +1,5 @@
 #OoTalk_frontend
+[![Build Status](https://travis-ci.org/SBR2015/OoTalk_frontend.svg?branch=master)](https://travis-ci.org/SBR2015/OoTalk_frontend)
 
 ##Using
 
@@ -9,6 +10,10 @@
   $ npm start
   $ gulp
 ```
+
+## App Information
+- [Travis CI](https://travis-ci.org/SBR2015/OoTalk_frontend)
+- [Heroku](https://ootalk.herokuapp.com)
 
 ## Using Tools
 
