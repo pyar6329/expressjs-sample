@@ -12,31 +12,37 @@ concat = require 'gulp-concat'
 # coffee require files
 browserify = require 'browserify'
 source = require 'vinyl-source-stream'
+buffer = require 'vinyl-buffer'
 uglify = require 'gulp-uglify'
 
 gulp.task 'browserify', ->
-    srcFiles = [glob.sync('./public/javascripts/controllers/*.cjsx'),
-                glob.sync('./public/javascripts/views/*.cjsx')]
-    return browserify
+    srcFiles = [glob.sync('./public/javascripts/**/*.cjsx'),
+                glob.sync('./public/javascripts/**/*.coffee')]
+    browserify
             entries: srcFiles
+            debug: true
+            extensions: ['.coffee','.cjsx']
             transform: ['coffee-reactify']
-            #extensions: ['.coffee','.cjsx']
-        .bundle()
-        # .pipe uglify()
-        .pipe source('application.js')
-        .pipe gulp.dest('./public/javascripts')
+      .bundle()
+      .pipe source('application.js')
+      .pipe buffer()
+      .pipe sourcemaps.init
+        loadMaps: true
+      .pipe uglify()
+      .pipe sourcemaps.write('./')
+      .pipe gulp.dest('build/javascripts')
 
 gulp.task 'sass', ->
   compileCSSFileName = 'application.css'
   gulp.src ['./public/stylesheets/*.scss',
             '!./public/stylesheets/' + compileCSSFileName]
-  # gulp.src './public/stylesheets/*.scss'
-    .pipe sourcemaps.init()
+    .pipe sourcemaps.init
+      loadMaps: true
     .pipe sass()
     .pipe concat(compileCSSFileName)
     .pipe minifyCss()
-    .pipe sourcemaps.write('.')
-    .pipe gulp.dest('./public/stylesheets')
+    .pipe sourcemaps.write('./')
+    .pipe gulp.dest('build/stylesheets')
 
 gulp.task 'livereload', ->
   gulp.src './public'

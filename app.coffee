@@ -31,7 +31,8 @@ app.use cookieParser()
 #   dest: path.join(__dirname, 'public')
 #   indentedSyntax: true
 #   sourceMap: true)
-app.use express.static(path.join(__dirname, 'public'))
+# app.use express.static(path.join(__dirname, 'public'))
+app.use express.static(path.join(__dirname, 'build'))
 app.use '/', routes
 app.use '/users', users
 
