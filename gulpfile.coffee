@@ -52,4 +52,5 @@ gulp.task 'watch', ->
   gulp.watch 'public/javascripts/**/*.cjsx', ['browserify']
   gulp.watch 'public/stylesheets/**/*.scss', ['sass']
 
+gulp.task 'build', ['browserify', 'sass']
 gulp.task 'default', ['watch', 'livereload']
