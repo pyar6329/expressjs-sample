@@ -70,17 +70,17 @@ gulp.task 'server:restart', ->
       'DEBUG': 'OoTalk_frontend'
     }
     stdout: false
-    # ).on 'restart', ->
-    #   setTimeout (->
-    #     gulp.src('./bin/www')
-    #       .pipe(livereload())
-    #     ), 1000
-  ).on 'readable', ->
-    @stdout.on 'data', (chunk) ->
-      # if /\[nodemon\]\sstarting\s`node\s\.\/bin\/www`$/.test(chunk)
-      if /^listening/.test(chunk)
-        livereload.reload()
-      process.stdout.write chunk
+    ).on 'restart', ->
+      setTimeout (->
+        gulp.src('./bin/www')
+          .pipe(livereload())
+      ), 250
+  # ).on 'readable', ->
+  #   @stdout.on 'data', (chunk) ->
+  #     # if /\[nodemon\]\sstarting\s`node\s\.\/bin\/www`$/.test(chunk)
+  #     if /^listening/.test(chunk)
+  #       livereload.reload()
+  #     process.stdout.write chunk
 
   gulp.watch(
     'public/javascripts/**/*.cjsx'
