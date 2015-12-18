@@ -4,16 +4,16 @@ favicon = require('serve-favicon')
 logger = require('morgan')
 cookieParser = require('cookie-parser')
 bodyParser = require('body-parser')
-routes = require('./routes/index')
-users = require('./routes/users')
+controllers = require('./app/controllers/index')
+users = require('./app/controllers/users')
 app = express()
 ECT = require('ect')
 ectRenderer = ECT(
   watch: true
-  root: __dirname + '/views'
+  root: __dirname + '/app/views'
   ext: '.ect')
 
-
+app.set 'views', path.join(process.cwd(), 'app', 'views')
 # view engine setup
 #app.set 'views', path.join(__dirname, 'views')
 #app.set 'view engine', 'ejs'
@@ -33,7 +33,7 @@ app.use cookieParser()
 #   sourceMap: true)
 # app.use express.static(path.join(__dirname, 'public'))
 app.use '/static', express.static(path.join(__dirname, 'build'))
-app.use '/', routes
+app.use '/', controllers
 app.use '/users', users
 
 # catch 404 and forward to error handler
