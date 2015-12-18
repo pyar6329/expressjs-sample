@@ -57,7 +57,7 @@ gulp.task 'sass', ->
 #   console.log 'server restarted'
 #   server.start.bind(server)
 
-gulp.task 'server:restart', ->
+gulp.task 'server', ->
   livereload.listen()
   # reloaded = undefined
 
@@ -104,7 +104,6 @@ gulp.task 'server:restart', ->
 #     .pipe livereload(livereload: true)
 
 # gulp.task 'watch', ->
-  # livereload.listen()
   # gulp.watch 'public/javascripts/**/*.cjsx', ['browserify']
   # gulp.watch 'public/stylesheets/**/*.scss', ['sass']
   # gulp.watch 'app/models/**/*.coffee', ['server:restart']
@@ -113,4 +112,4 @@ gulp.task 'server:restart', ->
 
 gulp.task 'build', ['browserify', 'sass']
 # gulp.task 'default', ['watch', 'livereload', 'server:restart']
-gulp.task 'default', ['server:restart']
+gulp.task 'default', ['server']
