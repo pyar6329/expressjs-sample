@@ -34,10 +34,38 @@ app.use cookieParser()
 # mongoose = require('mongoose')
 # mongoose.connect process.env.MONGOLAB_URI
 
+# passport
+# app.use express.session({secret: 'foo'})
+session = require('express-session')
+app.use session(
+  secret: 'secrethogehoge'
+  resave: false
+  saveUninitialized: false)
+  # cookie: maxAge: 30 * 60 * 1000)
+  # resave: false
+  # saveUninitialized: false
+
+passport = require('passport')
+app.use passport.initialize()
+app.use passport.session()
+
+# Account = require('./models/account')
+# passport.use new LocalStrategy(
+#   Account.authenticate())
+# passport.serializeUser Account.serializeUser()
+# passport.deserializeUser Account.deserializeUser()
+# passport.serializeUser (user, done) ->
+#   console.log user
+#   done null, user.id
+#
+# passport.deserializeUser (id, done) ->
+#   User.findById id, (err, user) ->
+#   done err, user
+
 # load routes settings
 controllers = require('./app/controllers/index')
 users = require('./app/controllers/users')
-api_users = require('./app/controllers/api/v1/users')
+# api_users = require('./app/controllers/api/v1/users')
 # express = require('express')
 # app = express()
 # path = require('path')
@@ -48,7 +76,7 @@ app.use '/', controllers
 # app.use '/', require('./app/controllers/index')
 app.use '/users', users
 # app.use '/users', require('./app/controllers/users')
-app.use '/api/v1/users', api_users
+# app.use '/api/v1/users', api_users
 
 # require('./config/routes')(app, express)
 
