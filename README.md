@@ -7,7 +7,6 @@
   $ git clone git@github.com:SBR2015/OoTalk_frontend.git
   $ cd OoTalk_frontend
   $ npm install
-  $ npm start
   $ gulp
 ```
 
@@ -23,8 +22,6 @@
 ###Server
 - express(node.js)
 [](- mongodb)
-- browserify
-- reactrify
 
 ###Client
 - react
@@ -33,6 +30,7 @@
 ###Languages
 - coffee
 - ect(js engine)
+- scss
 
 ###Chrome Tools
 - [LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en)

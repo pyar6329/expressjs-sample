@@ -1,7 +1,7 @@
 gulp = require 'gulp'
 glob = require 'glob'
 watch = require 'gulp-watch'
-livereload = require 'gulp-webserver'
+# livereload = require 'gulp-webserver'
 
 # CSS require files
 sass = require 'gulp-sass'
@@ -14,6 +14,12 @@ browserify = require 'browserify'
 source = require 'vinyl-source-stream'
 buffer = require 'vinyl-buffer'
 uglify = require 'gulp-uglify'
+
+# nodejs server files
+# gls = require 'gulp-live-server'
+# server = gls.new './bin/www'
+nodemon = require 'gulp-nodemon'
+livereload = require 'gulp-livereload'
 
 gulp.task 'browserify', ->
     srcFiles = [glob.sync('./public/javascripts/**/*.cjsx'),
@@ -44,13 +50,66 @@ gulp.task 'sass', ->
     .pipe sourcemaps.write('./')
     .pipe gulp.dest('build/stylesheets')
 
-gulp.task 'livereload', ->
-  gulp.src './public'
-    .pipe livereload(livereload: true)
+# gulp.task 'server:start', ->
+#   server.start()
+#
+# gulp.task 'server:restart', ->
+#   console.log 'server restarted'
+#   server.start.bind(server)
 
-gulp.task 'watch', ->
-  gulp.watch 'public/javascripts/**/*.cjsx', ['browserify']
-  gulp.watch 'public/stylesheets/**/*.scss', ['sass']
+gulp.task 'server', ->
+  livereload.listen()
+  # reloaded = undefined
+
+  nodemon(
+    script: './bin/www'
+    ext: 'ect coffee js'
+    ignore: ['public', 'build', 'app/views']
+    env: {
+      'NODE_ENV': 'development'
+      'DEBUG': 'OoTalk_frontend'
+    }
+    stdout: false
+    ).on 'restart', ->
+      setTimeout (->
+        gulp.src('./bin/www')
+          .pipe(livereload())
+      ), 250
+  # ).on 'readable', ->
+  #   @stdout.on 'data', (chunk) ->
+  #     # if /\[nodemon\]\sstarting\s`node\s\.\/bin\/www`$/.test(chunk)
+  #     if /^listening/.test(chunk)
+  #       livereload.reload()
+  #     process.stdout.write chunk
+
+  gulp.watch(
+    'public/javascripts/**/*.cjsx'
+    ['browserify']
+  ).on 'change', (event) ->
+    livereload.changed event
+
+  gulp.watch(
+    'public/stylesheets/**/*.scss'
+    ['sass']
+  ).on 'change', (event) ->
+    livereload.changed event
+
+  gulp.watch(
+    'app/views/*.ect'
+  ).on 'change', (event) ->
+    livereload.changed event
+
+# gulp.task 'livereload', ->
+#   gulp.src ['./public','./app']
+#     .pipe livereload(livereload: true)
+
+# gulp.task 'watch', ->
+  # gulp.watch 'public/javascripts/**/*.cjsx', ['browserify']
+  # gulp.watch 'public/stylesheets/**/*.scss', ['sass']
+  # gulp.watch 'app/models/**/*.coffee', ['server:restart']
+  # gulp.watch 'app/controllers/**/*.coffee', ['server:restart']
+  # gulp.watch 'app/views/**/*.ect', ['server:restart']
 
 gulp.task 'build', ['browserify', 'sass']
-gulp.task 'default', ['watch', 'livereload']
+# gulp.task 'default', ['watch', 'livereload', 'server:restart']
+gulp.task 'default', ['server']
