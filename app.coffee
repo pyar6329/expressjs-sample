@@ -4,8 +4,6 @@ favicon = require('serve-favicon')
 logger = require('morgan')
 cookieParser = require('cookie-parser')
 bodyParser = require('body-parser')
-controllers = require('./app/controllers/index')
-users = require('./app/controllers/users')
 app = express()
 ECT = require('ect')
 ectRenderer = ECT(
@@ -31,10 +29,28 @@ app.use cookieParser()
 #   dest: path.join(__dirname, 'public')
 #   indentedSyntax: true
 #   sourceMap: true)
-# app.use express.static(path.join(__dirname, 'public'))
+
+# mongodb settings
+# mongoose = require('mongoose')
+# mongoose.connect process.env.MONGOLAB_URI
+
+# load routes settings
+controllers = require('./app/controllers/index')
+users = require('./app/controllers/users')
+api_users = require('./app/controllers/api/v1/users')
+# express = require('express')
+# app = express()
+# path = require('path')
+
 app.use '/static', express.static(path.join(__dirname, 'build'))
+# app.use express.static(path.join(__dirname, 'public'))
 app.use '/', controllers
+# app.use '/', require('./app/controllers/index')
 app.use '/users', users
+# app.use '/users', require('./app/controllers/users')
+app.use '/api/v1/users', api_users
+
+# require('./config/routes')(app, express)
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
