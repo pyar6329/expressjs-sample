@@ -52,3 +52,6 @@ Desktop.ini
 
 # for aptana studio project file
 .project
+
+# json sample
+data/

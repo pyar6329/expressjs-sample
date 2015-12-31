@@ -30,14 +30,34 @@ app.use cookieParser()
 #   indentedSyntax: true
 #   sourceMap: true)
 
+# secret keys
+env = process.env.NODE_ENV || 'development'
+secrets = require('./config/secrets')[env]
+
 # mongodb settings
-# mongoose = require('mongoose')
-# mongoose.connect process.env.MONGOLAB_URI
+mongoose = require('mongoose')
+mongoose.connect secrets.db # process.env.MONGOLAB_URI
+
+# passport
+flash = require('connect-flash')
+passport = require('passport')
+session = require('express-session')
+app.use flash()
+app.use session(
+  secret: secrets.key_base # 'secrethogehoge'
+  resave: false
+  saveUninitialized: false)
+  # cookie: maxAge: 30 * 60 * 1000)
+  # resave: false
+  # saveUninitialized: false
+app.use passport.initialize()
+app.use passport.session()
+require './config/passport'
 
 # load routes settings
 controllers = require('./app/controllers/index')
 users = require('./app/controllers/users')
-api_users = require('./app/controllers/api/v1/users')
+# api_users = require('./app/controllers/api/v1/users')
 # express = require('express')
 # app = express()
 # path = require('path')
@@ -48,7 +68,7 @@ app.use '/', controllers
 # app.use '/', require('./app/controllers/index')
 app.use '/users', users
 # app.use '/users', require('./app/controllers/users')
-app.use '/api/v1/users', api_users
+# app.use '/api/v1/users', api_users
 
 # require('./config/routes')(app, express)
 
