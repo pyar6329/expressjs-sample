@@ -1,13 +1,26 @@
 passport = require 'passport'
 LocalStrategy = require('passport-local').Strategy
+Authentication = require '../app/helpers/authentication'
+User = require '../app/models/user'
 
-passport.serializeUser (user, done) ->
-  console.log user
-  done null, user.id
+class Passport
 
-passport.deserializeUser (id, done) ->
-  User.findById id, (err, user) ->
-  done err, user
+  passport.use new LocalStrategy {
+    usernameField: 'email'
+    passwordField: 'password'
+    failureFlash: true
+  }, (email, password, done) ->
+    auth = new Authentication {
+      email: email
+      password: password
+    }
+    auth.sign_in(done)
 
-Account = require '../app/models/users'
-passport.use new LocalStrategy(Account.authenticate())
+  passport.serializeUser (user, done) ->
+    done null, user._id
+
+  passport.deserializeUser (_id, done) ->
+    User.findOne {_id: _id}, (err, user) ->
+      done err, user
+
+module.export = Passport

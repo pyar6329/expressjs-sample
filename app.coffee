@@ -30,37 +30,29 @@ app.use cookieParser()
 #   indentedSyntax: true
 #   sourceMap: true)
 
+# secret keys
+env = process.env.NODE_ENV || 'development'
+secrets = require('./config/secrets')[env]
+
 # mongodb settings
-# mongoose = require('mongoose')
-# mongoose.connect process.env.MONGOLAB_URI
+mongoose = require('mongoose')
+mongoose.connect secrets.db # process.env.MONGOLAB_URI
 
 # passport
-# app.use express.session({secret: 'foo'})
+flash = require('connect-flash')
+passport = require('passport')
 session = require('express-session')
+app.use flash()
 app.use session(
-  secret: 'secrethogehoge'
+  secret: secrets.key_base # 'secrethogehoge'
   resave: false
   saveUninitialized: false)
   # cookie: maxAge: 30 * 60 * 1000)
   # resave: false
   # saveUninitialized: false
-
-passport = require('passport')
 app.use passport.initialize()
 app.use passport.session()
-
-# Account = require('./models/account')
-# passport.use new LocalStrategy(
-#   Account.authenticate())
-# passport.serializeUser Account.serializeUser()
-# passport.deserializeUser Account.deserializeUser()
-# passport.serializeUser (user, done) ->
-#   console.log user
-#   done null, user.id
-#
-# passport.deserializeUser (id, done) ->
-#   User.findById id, (err, user) ->
-#   done err, user
+require './config/passport'
 
 # load routes settings
 controllers = require('./app/controllers/index')
