@@ -35,7 +35,7 @@ router.get '/signin', (req, res, next) ->
   if req.isAuthenticated()
     res.redirect '/users/signed'
     return
-  res.render 'signin'
+  res.render 'signin', { csrf: req.csrfToken() }
 
 # POST: /users/signin
 router.post '/signin',
@@ -44,6 +44,10 @@ router.post '/signin',
     failureRedirect: '/users/failed'
     failureFlash: true
   }), (req, res) ->
+    if req.xhr
+      console.log 'xhr Access'
+    else
+      console.log 'not xhr Access'
 
 # GET: /users/signup
 router.get '/signup', (req, res, next) ->
@@ -51,10 +55,15 @@ router.get '/signup', (req, res, next) ->
   if req.isAuthenticated()
     res.redirect '/users/signed'
     return
-  res.render 'signup'
+  res.render 'signup', { csrf: req.csrfToken() }
 
 # POST: /users/signup
 router.post '/signup', (req, res) ->
+  if req.xhr
+    console.log 'xhr Access'
+  else
+    console.log 'not xhr Access'
+
   auth = new Authentication {
     email: req.body.email
     password: req.body.password

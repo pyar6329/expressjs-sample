@@ -9,6 +9,9 @@
   	<input type="password" name="password"/>
 	</div>
 	<div>
+		<input id="token" type="hidden" name="_csrf" value="<%= @csrf %>">
+	</div>
+	<div>
 	  <input type="submit" value="Sign in"/>
 	</div>
 </form>

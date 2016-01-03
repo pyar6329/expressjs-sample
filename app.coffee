@@ -54,6 +54,10 @@ app.use passport.initialize()
 app.use passport.session()
 require './config/passport'
 
+# csurf
+csrf = require('csurf')
+app.use csrf()
+
 # load routes settings
 controllers = require('./app/controllers/index')
 users = require('./app/controllers/users')
