@@ -5,7 +5,8 @@ class Authentication
   _email = ''
   _password = ''
   _password_confirmation = ''
-  _confirm_success_url = ''
+  _confirm_success_url = 'http://localhost:3000/users/success'
+  BASEURL = 'https://ootalkbackend.herokuapp.com/api/v1'
 
   constructor: (params = {}) ->
     _email = params.email
@@ -15,7 +16,7 @@ class Authentication
 
   sign_in: (callback) ->
     request.post {
-      url: 'https://ootalkbackend.herokuapp.com/api/v1/auth/sign_in'
+      url: BASEURL + '/auth/sign_in'
       json: true
       form:
         email: _email
@@ -52,5 +53,35 @@ class Authentication
       # サインイン失敗時
       else if httpResponse.statusCode == 401
         return callback null, false, { message: body.errors[0] }
+
+  sign_up: (callback) ->
+    request.post {
+      url: BASEURL + '/auth'
+      json: true
+      form:
+        email: _email
+        password: _password
+        password_confirmation: _password_confirmation
+        confirm_success_url: _confirm_success_url
+    },  (err, httpResponse, body) ->
+      # サインアップ成功時
+      if httpResponse.statusCode == 200
+        console.log 'please confirmed on email'
+        # return callback
+      # サインアップ失敗時
+      else if httpResponse.statusCode == 403
+        console.log body.errors.full_messages[0]
+
+      console.log '~~~~~~~~~~httpResponse is here~~~~~~~~~~~~~~~~'
+      # console.log httpResponse.statusCode
+    return
+
+  sign_out: (callback) ->
+    request.del {
+      url: BASEURL + '/auth/sign_out'
+      json: true
+    }, (err, httpResponse, body) ->
+      console.log httpResponse
+    return
 
 module.exports = Authentication
