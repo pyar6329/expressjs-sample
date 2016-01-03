@@ -35,7 +35,7 @@ router.get '/signin', (req, res, next) ->
   if req.isAuthenticated()
     res.redirect '/users/signed'
     return
-  res.render 'signin'
+  res.render 'signin', { csrf: req.csrfToken() }
 
 # POST: /users/signin
 router.post '/signin',
@@ -51,7 +51,7 @@ router.get '/signup', (req, res, next) ->
   if req.isAuthenticated()
     res.redirect '/users/signed'
     return
-  res.render 'signup'
+  res.render 'signup', { csrf: req.csrfToken() }
 
 # POST: /users/signup
 router.post '/signup', (req, res) ->
