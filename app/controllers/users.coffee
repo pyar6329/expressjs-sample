@@ -24,25 +24,54 @@ router.get '/failed', (req, res, next) ->
   res.send '' + req.flash('error')
   return
 
-# GET: /users/sign_in
-# router.get '/sign_in', (req, res, next) ->
-#   auth = new Authentication(
-#     'pyar6329@gmail.com'
-#     'qwixYXU8v8NzGUzjqBcapHsEUVimEcEYrpLWmYExT8tQEN9XBP'
-#   )
-#   auth.sign_in()
-#   res.render 'login'
+# GET: /users/signed
+router.get '/signed', (req, res, next) ->
+  res.send 'you are already signed!'
+  return
 
-# GET: /users/login
-router.get '/login', (req, res, next) ->
-  res.render 'login'
+# GET: /users/signin
+router.get '/signin', (req, res, next) ->
+  # ログイン済みならリダイレクト
+  if req.isAuthenticated()
+    res.redirect '/users/signed'
+    return
+  res.render 'signin'
 
-# POST: /users/login
-router.post '/login',
-  passport.authenticate('local',{
+# POST: /users/signin
+router.post '/signin',
+  passport.authenticate('local-signin',{
     successRedirect: '/users/success'
     failureRedirect: '/users/failed'
     failureFlash: true
   }), (req, res) ->
+
+# GET: /users/signup
+router.get '/signup', (req, res, next) ->
+  # ログイン済みならリダイレクト
+  if req.isAuthenticated()
+    res.redirect '/users/signed'
+    return
+  res.render 'signup'
+
+# POST: /users/signup
+router.post '/signup', (req, res) ->
+  auth = new Authentication {
+    email: req.body.email
+    password: req.body.password
+    password_confirmation: req.body.password_confirmation
+    # メールのリンクをクリックした時のリダイレクトURL
+    # parameterにはemail, passwordは与えない?(hash関数で暗号化すればいけそう？)
+    # redirectのコントローラーに引数(email = なんとか) で渡す?←無理そう
+    confirm_success_url: 'http://localhost:3000/users/success?email=foo&password=boo'
+  }
+  auth.sign_up()
+  res.redirect '/users/signup'
+
+# GET: /users/signout
+router.get '/signout', (req, res) ->
+  # auth = new Authentication
+  # auth.sign_out()
+  req.logout()
+  res.redirect '/users/signin'
 
 module.exports = router
