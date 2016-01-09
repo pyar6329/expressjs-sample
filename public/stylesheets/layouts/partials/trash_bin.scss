@@ -1,0 +1,30 @@
+#trash-can {
+  background-color: darkseagreen;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  height: 400px;
+  letter-spacing: 10px;
+  padding: 60px 10px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-transform: uppercase;
+  top: 0;
+  // vertical-align: middle;
+  width: 30px;
+  word-wrap: break-word;
+
+  #trash-c {
+    display: none;
+    margin-top: 40px;
+    max-height: 200px;
+  }
+  #trash-o {
+    display: inline;
+    margin-top: 40px;
+    max-height: 200px;
+  }
+}
