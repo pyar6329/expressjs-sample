@@ -1,6 +1,6 @@
 window.course =
   get_courses: ->
-    URL = '/api/v1/courses.json'
+    URL = 'http://ootalkbackend.herokuapp.com/api/v1/courses.json'
     $.get URL, null, (lists) =>
       all_lists = ''
       for l in lists
@@ -8,7 +8,7 @@ window.course =
       $('#course_list').empty().append(all_lists)
 
     get_lessons: (course_id) ->
-      URL = '/api/v1/courses/' + course_id + '/lessons.json'
+      URL = 'http://ootalkbackend.herokuapp.com/api/v1/courses/' + course_id + '/lessons.json'
       $.get URL, null, (lists) =>
         all_lists = ''
         for l in lists
@@ -16,7 +16,7 @@ window.course =
         $('#lesson_list').empty().append(all_lists)
 
     get_detail_lesson: (course_id, lesson_id) ->
-      URL = '/api/v1/courses/' + course_id + '/lessons/' + lesson_id + '.json'
+      URL = 'http://ootalkbackend.herokuapp.com/api/v1/courses/' + course_id + '/lessons/' + lesson_id + '.json'
       this_lesson = ''
       $.get URL, null, (lesson) =>
         this_lesson += '<div id="title"><h2>' + lesson.title + '</h2></div>'

@@ -1,6 +1,7 @@
 # Author: Linh, Ounenhei, yuchan, Tsukasa Arima, Olivia
 
 # ootalk = require 'ootalk'
+ootalk = require './ootalk_index'
 
 window.codeui =
   clone_dragged: (ui) ->
