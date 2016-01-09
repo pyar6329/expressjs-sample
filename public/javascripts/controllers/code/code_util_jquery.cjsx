@@ -29,7 +29,7 @@ window.codeutil =
         lang = codeutil.getParameterByName "lang"
         #syntax_listのアイコン
         ICONS = ['+', '−', '×', '÷', '%', 'log', 'aⁿ', '&', '!&', 'ǀǀ', '!ǀǀ', '⊕', '=', '≠','>', '≥', '<', '≤','→', '↻', 'if','a', '0']
-        URL = "/api/v1/abstractsyntax/"
+        URL = "http://ootalkbackend.herokuapp.com/api/v1/abstractsyntax/"
         LANG = lang ? "en"
         $.get URL + LANG, null, (lists) =>
             abstract_syntax_lists = $("#abstract_syntax_lists")
@@ -51,7 +51,7 @@ window.codeutil =
                 codeui.enDraggable $('#abstract_syntax_lists div')
 
     executeRequest: (params) ->
-        $.ajax '/api/v1/execute',
+        $.ajax 'http://ootalkbackend.herokuapp.com/api/v1/execute',
             type:'POST'
             dataType:'json'
             data : params
@@ -59,7 +59,7 @@ window.codeutil =
             success: (data) ->
                 console.log data
                 #    $('#output_code').html syntaxHighlight JSON.stringify(data, undefined, 4)
-                headline_text = '<table class = "table table-hover"><thead><tr><th></td><th>' + I18n.t('Excute Code') + '</th><th>' + I18n.t('Excute Result') + '</th></tr></thead><tbody></tbody></table>'
+                headline_text = '<table class = "table table-hover"><thead><tr><th></td><th>' + 'Excute Code' + '</th><th>' + 'Excute Result' + '</th></tr></thead><tbody></tbody></table>'
                 $('#output_code').append(headline_text)
                 for d, i in data
                     line_text = '<tr><th>' + (i+1).toString() + '</th><td>' + d['exec'] + '</td><td>' + d['result'] + '</td></tr>'
