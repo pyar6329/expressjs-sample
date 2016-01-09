@@ -1,0 +1,13 @@
+<% extend 'common_bootstrap' %>
+<div class="col-md-12">
+  <form id="code_execute" method="POST">
+    <div class="form-group">
+      <textarea cols="80" id="json_code" name="code[src]" placeholder="コードを入力してください" rows="25"></textarea>
+    </div>
+    <% include 'layouts/partials/submit_button' %>
+    <% include 'layouts/partials/empty_button' %>
+  </form>
+</div>
+<div class="col-md-12">
+  <% include 'layouts/partials/output_code' %>
+</div>

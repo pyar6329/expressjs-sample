@@ -4,7 +4,6 @@ router = express.Router()
 ### GET home page. ###
 
 router.get '/', (req, res, next) ->
-  console.log 'show'
-  res.render 'index', title: 'Express'
+  res.render 'code/index'
   return
 module.exports = router

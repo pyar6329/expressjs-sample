@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>OoTalk</title>
+
+    <!-- CDN installation -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- <script src="//raw.githubusercontent.com/furf/jquery-ui-touch-punch/master/jquery.ui.touch-punch.js"></script> -->
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- public js & css -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.min.css">
+    <!-- mode -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/mode/javascript/javascript.min.js"></script>
+
+    <!-- ootalk js -->
+    <script src="//raw.githubusercontent.com/SBR2015/OoTalk_backend/master/vendor/assets/javascripts/ootalk.min.js" type="text/plain"></script>
+    <script src="//raw.githubusercontent.com/SBR2015/OoTalk_backend/master/public/javascripts/translations.js" type="text/plain"></script>
+
+    <!-- i18n-js -->
+    <script src="//raw.githubusercontent.com/SBR2015/OoTalk_backend/master/public/javascripts/translations.js" type="text/plain"></script>
+
+    <!-- minified static files -->
+    <link rel='stylesheet' href='/static/stylesheets/application.css' />
+    <script type="text/javascript" src="/static/javascripts/application.js"></script>
+  </head>
+  <body>
+    <% include 'layouts/header' %>
+    <% include 'layouts/nav' %>
+    <article>
+      <!-- <div class="container"> -->
+        <% content %>
+      <!-- </div> -->
+    </article>
+    <% include 'layouts/footer' %>
+  </body>
+</html>
