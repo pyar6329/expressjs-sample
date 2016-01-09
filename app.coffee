@@ -63,6 +63,8 @@ users = require('./app/controllers/users')
 welcome = require('./app/controllers/welcome')
 code = require('./app/controllers/code')
 code_json = require('./app/controllers/code_json')
+course = require('./app/controllers/course')
+
 # api_users = require('./app/controllers/api/v1/users')
 # express = require('express')
 # app = express()
@@ -76,6 +78,9 @@ app.use '/users', users
 
 app.use '/code', code
 app.use '/codejson', code_json
+
+app.use '/course', course
+
 # app.use '/users', require('./app/controllers/users')
 # app.use '/api/v1/users', api_users
 
