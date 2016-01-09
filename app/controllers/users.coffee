@@ -33,15 +33,18 @@ router.get '/signed', (req, res, next) ->
 router.get '/signin', (req, res, next) ->
   # ログイン済みならリダイレクト
   if req.isAuthenticated()
-    res.redirect '/users/signed'
+    # res.redirect '/users/signed'
+    res.redirect '/'
     return
-  res.render 'signin', { csrf: req.csrfToken() }
+  res.render 'users/signin', { csrf: req.csrfToken() }
 
 # POST: /users/signin
 router.post '/signin',
   passport.authenticate('local-signin',{
-    successRedirect: '/users/success'
-    failureRedirect: '/users/failed'
+    successRedirect: '/'
+    failureRedirect: '/'
+    # successRedirect: '/users/success'
+    # failureRedirect: '/users/failed'
     failureFlash: true
   }), (req, res) ->
 
@@ -49,9 +52,10 @@ router.post '/signin',
 router.get '/signup', (req, res, next) ->
   # ログイン済みならリダイレクト
   if req.isAuthenticated()
-    res.redirect '/users/signed'
+    # res.redirect '/users/signed'
+    res.redirect '/'
     return
-  res.render 'signup', { csrf: req.csrfToken() }
+  res.render 'users/signup', { csrf: req.csrfToken() }
 
 # POST: /users/signup
 router.post '/signup', (req, res) ->

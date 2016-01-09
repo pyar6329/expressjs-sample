@@ -8,7 +8,7 @@ class Passport
   passport.use 'local-signin', new LocalStrategy {
     usernameField: 'email'
     passwordField: 'password'
-    failureFlash: true
+    # failureFlash: true
   }, (email, password, done) ->
     auth = new Authentication {
       email: email

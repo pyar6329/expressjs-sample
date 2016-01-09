@@ -1,0 +1,22 @@
+/*-------------Header styling-------------*/
+
+#header {
+  text-transform: uppercase;
+
+  a {
+    color: #999999;
+  }
+
+  a:hover {
+    background-color: #ff6666;
+    color: white;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-brand .brand-text {
+    top: -7px;
+    position: relative;
+    font-size: 14px;
+  }
+}

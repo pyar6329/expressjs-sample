@@ -30,7 +30,7 @@ class Authentication
             return callback err
           # ユーザーが存在したとき
           if result
-            return callback null, result
+            return callback null, result, { message: 'login succeed' }
           # ユーザーが存在しないとき
           else
             # return callback null, false
@@ -48,7 +48,7 @@ class Authentication
               if err
                 console.log 'unsaved user = ' + body.data.email
                 return callback err
-              return callback null, result
+              return callback null, result, { message: 'login succeed' }
 
       # サインイン失敗時
       else if httpResponse.statusCode == 401
