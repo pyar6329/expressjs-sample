@@ -40,8 +40,7 @@ gulp.task 'browserify', ->
 
 gulp.task 'sass', ->
   compileCSSFileName = 'application.css'
-  gulp.src ['./public/stylesheets/*.scss',
-            './public/stylesheets/**/*.scss'
+  gulp.src ['./public/stylesheets/**/*.scss'
             '!./public/stylesheets/' + compileCSSFileName]
     .pipe sourcemaps.init
       loadMaps: true

@@ -1,7 +1,7 @@
 React = require('react')
 ReactDOM = require('react-dom')
 
-Test = require('../views/test.cjsx')
+Test = require('../../views/hoge/test')
 
 window.onload = ( ->
   ReactDOM.render(

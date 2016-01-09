@@ -1,6 +1,6 @@
 # Author: Linh, Ounenhei, yuchan, Tsukasa Arima, Olivia
 
-ootalk = require 'ootalk'
+# ootalk = require 'ootalk'
 
 window.codeui =
   clone_dragged: (ui) ->
