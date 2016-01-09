@@ -1,0 +1,72 @@
+#navbar_tail {
+  display: none;
+  .breadcrumb i{
+    padding: 0px 5px 0px 0px;
+  }
+}
+
+#courses_contents {
+  padding: 0px 100px 10px 100px;
+  //text-align: center;
+  #course_list {
+    display: none;
+
+    div {
+      width: 100px;
+      height: 130px;
+      background-color: white;
+      display: inline-block;
+      margin: 10px;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    div:hover{
+      color: white;
+      background-color: #2ABB9B;
+
+    }
+  }
+
+  .course-title:hover {
+    background-color: #2ABB9B;
+    color: white;
+  }
+
+  #lesson_list {
+    display: none;
+    //text-align: center;
+    padding-left: 90px;
+    div {
+      display: inline-table;
+      background-color: #ffffff;
+      color: #34495E;
+      width: 350px;
+      height: 40px;
+      text-align: center;
+      padding-top: 10px;
+      margin-right: 90px;
+      margin-bottom: 15px;
+      //margin-left: 80px;
+    }
+    div:hover {
+      background-color: #2ABB9B;
+      color: #ffffff;
+    }
+  }
+
+  #lesson_detail {
+    display: none;
+    #title {
+      padding: 0px 10px 10px 20px;
+      text-align: center;
+    }
+    #line {
+      border-bottom: 5px solid #D2D7D3;
+    }
+    #body {
+      padding: 20px 20px 0px 20px;
+      font-size: 17px;
+    }
+  }
+}
