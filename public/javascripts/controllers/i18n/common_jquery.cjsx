@@ -1,6 +1,8 @@
 # I18n
 window.sitei18n =
   init: ->
+    console.log 'hello'
+    console.log I18n.defaultLocale
     $('#Reset').attr('value',I18n.t('Reset'))
     $('#Submit').attr('value',I18n.t('Submit'))
     $('#Code').text(I18n.t('Code'))
